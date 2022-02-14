@@ -5,7 +5,7 @@
 |  HTTP Method  |    URI path  		 			      |    Description        |  Protected |
 | ------------- | ----------------------------|-----------------------|------------|
 |     GET			  | /  				 			            | index page            |            |
-|     GET			  | /productos				 			    | Products page         |            |
+|     GET			  | /productos				 			    | Products list         |            |
 |     GET			  | /registro  		 		        	| Register page 	      |	           |
 |     GET			  | /iniciar-sesion 	 			    | Login page  		      |            | 
 |     GET			  | /perfil/ 	     			        | Profile page	        |     ✅     |
