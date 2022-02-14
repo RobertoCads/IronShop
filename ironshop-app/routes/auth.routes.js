@@ -11,7 +11,7 @@ const saltRounds = 10
 
 // SIGN UP /////////////////////
 router.get("/registro", (req, res, next) => {
-    res.render("auth/register")
+    res.render("auth/register", { hideNavbar: true })
 })
 
 router.post("/registro", (req, res, next) => {
@@ -28,7 +28,7 @@ router.post("/registro", (req, res, next) => {
 
 // LOG IN /////////////////////
 router.get("/iniciar-sesion", (req, res, next) => {
-    res.render("auth/login")
+    res.render("auth/login", { hideNavbar: true });
 })
 
 router.post("/iniciar-sesion", (req, res, next) => {
