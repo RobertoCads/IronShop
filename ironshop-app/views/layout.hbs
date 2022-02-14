@@ -81,13 +81,40 @@
                   <a class="nav-link" href="#">SUDADERAS</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="#">TASAS</a>
+                  <a class="nav-link" href="#">TAZAS</a>
                </li>
                <li class="nav-item">
                   <a class="nav-link" href="#">PEGATINAS</a>
                </li>
             </ul>
+
+            
+
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+               {{#if isLoggedIn}}
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                     aria-expanded="false">
+                     Foto
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                     <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                     <li><a class="dropdown-item" href="#">Pedidos</a></li>
+                     <li>
+                        <hr class="dropdown-divider">
+                     </li>
+                     <li class="nav-item">
+                        <form action="/cerrar-sesion" method="POST">
+                           <button class="nav-link">Logout</button>
+                        </form>
+                     </li>
+                  </ul>
+               </li> 
+               {{/if}}
+
+
+
+               {{#unless isLoggedIn}}
                <li class="nav-item">
                   <a class="nav-link" href="/iniciar-sesion">Log In</a>
                </li>
@@ -95,18 +122,8 @@
                <li class="nav-item">
                   <a class="nav-link" href="/registro">Sign Up</a>
                </li>
+               {{/unless}}
             </ul>
-
-
-
-            {{!-- // POR SI QUEREMOS PONERLO AL FINAL DEL NAVBAR //////////////// --}}
-
-            {{!-- <span class="navbar-text">
-               <a href="/iniciar-sesion">Log In</a>
-               <a href="/registro">Sign In</a>
-            </span> --}}
-
-
 
          </div>
       </div>
@@ -128,16 +145,3 @@
 {{!-- // PARA PONER EL DROPDOWN CUANDO EL USUARIO INICIE SESIÓN //////////////// --}}
 
 
-{{!-- <li class="nav-item dropdown">
-   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-      aria-expanded="false">
-      Dropdown
-   </a>
-   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li>
-         <hr class="dropdown-divider">
-      </li>
-      <li><a class="dropdown-item" href="#">Something else here</a></li>
-   </ul> --}}

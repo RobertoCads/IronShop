@@ -40,3 +40,13 @@ body {
 .carousel .carousel-item img {
   object-fit: contain;
 }
+
+
+#error {
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-weight: 800;
+  margin-top: 20px;
+}
