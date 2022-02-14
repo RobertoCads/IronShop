@@ -21,6 +21,7 @@ require("./config")(app);
 // default value for title local
 
 app.locals.appTitle = "IronShop"
+//title
 
 // 👇 Start handling routes here
 const index = require("./routes/index");
