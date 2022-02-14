@@ -31,7 +31,7 @@ const auth = require("./routes/auth.routes")
 app.use("/", auth)
 
 const user = require("./routes/user.routes")
-app.use("/perfil", user)
+app.use("/", user)
 
 const admin = require("./routes/admin.routes")
 app.use("/admin", admin)
