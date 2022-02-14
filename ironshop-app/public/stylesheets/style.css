@@ -1,8 +1,42 @@
 body {
+  font-family: "Maven Pro", sans-serif;
+  font-weight: 400;
   padding: 0;
-  margin: 0
+  margin: 0;
+  color: #606975;
 }
 
-.navbar {
-  margin-bottom: 50px;
+.top-nav {
+  height: 50px;
+  border-bottom: 1px solid #e1e7ec;
+}
+
+.top-nav a i {
+  color: #606975;
+  text-decoration: none;
+}
+
+.navbar ul li a {
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.navbar .navbar-nav .nav-item .nav-link:hover {
+  color: #0da9ef;
+}
+
+.navbar .navbar-brand img {
+  height: 70px;
+}
+
+.carousel {
+  border-top: 1px solid #e1e7ec;
+}
+
+.carousel .carousel-item {
+  max-height: 800px;
+}
+
+.carousel .carousel-item img {
+  object-fit: contain;
 }

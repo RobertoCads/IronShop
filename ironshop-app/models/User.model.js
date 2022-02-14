@@ -33,26 +33,9 @@ const userSchema = new Schema(
         minlength: [16, "Introduce los números de tu tarjeta correctamente"],
         maxlength: [16, "Introduce los números de tu tarjeta correctamente"]
       },
-      month: {
-        type: Number,
-        minlength: [2, "Introduce el mes correctamente"],
-        maxlength: [2, "Introduce el mes correctamente"]
-      },
-      year: {
-        type: Number,
-        minlength: [2, "Introduce el año correctamente"],
-        maxlength: [2, "Introduce el año correctamente"]
-      },
-      cvc: {
-        type: Number,
-        minlength: [3, "Introduce tu CVC correctamente"],
-        maxlength: [3, "Introduce tu CVC correctamente"]
-      },
       country: String,
       postalCode: {
         type: Number,
-        minlength: [5, "Introduce tu codigo postal correctamente"],
-        maxlength: [5, "Introduce tu codigo postal correctamente"]
       }
     }
   },
