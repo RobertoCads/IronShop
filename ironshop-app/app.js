@@ -26,8 +26,6 @@ app.locals.appTitle = "IronShop"
 const index = require("./routes/index");
 app.use("/", index);
 
-// Comentario prueba
-
 const auth = require("./routes/auth.routes")
 app.use("/", auth)
 

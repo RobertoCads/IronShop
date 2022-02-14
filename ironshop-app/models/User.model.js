@@ -20,7 +20,6 @@ const userSchema = new Schema(
     },
     passwordHash: {
       type: String,
-      required: [true, "Indica la contraseña"]
     },
     role: {
       type: String,
