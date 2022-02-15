@@ -41,6 +41,39 @@ body {
   object-fit: contain;
 }
 
+.login-page img {
+  height: calc(100vh - 50px);
+  object-fit: contain;
+  background-color: var(--bs-primary);
+}
+
+.login-page .login-form {
+  min-height: 800px;
+  display: flex;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.login-page .login-form form {
+  width: 100%;
+}
+
+.login-page form input {
+  height: 50px;
+}
+
+.login-page form button {
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  height: 50px;
+}
+
+.login-page .separator {
+  color: #777;
+  font-size: 18px;
+}
 
 #error {
   background-color: red;

@@ -1,33 +1,55 @@
-<div class="container">
+<div class="container-fluid login-page">
+    <div class="row">
 
-    <div class="row justify-content-center">
-    
-        <div class="col-md-6">
-    
-            <h1>Registro</h1>
-            <hr>
-    
-            <form action="/registro" method="POST">
-                <div class="mb-3">
-                    <label for="emailInput" class="form-label">Dirección de email</label>
-                    <input type="email" class="form-control" id="emailInput" name="email">
-                </div>
-    
-                <div class="mb-3">
-                    <label for="usernameInput" class="form-label">Nombre de usuario</label>
-                    <input type="text" class="form-control" id="usernameInput" name="username">
-                </div>
-    
-                <div class="mb-3">
-                    <label for="pwdInput" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="pwdInput" name="password">
-                </div>
-    
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-info block">Registrarme</button>
-                </div>
-    
-            </form>
+        <div class="col-md-5">
+            <div class="login-form">
+                <form action="/iniciar-sesion" method="POST">
+                    <div class="mb-3">
+                        <label for="emailInput" class="fw-bold form-label mb-4">Dirección de email</label>
+                        <input type="email" class="form-control" id="emailInput" name="email">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="usernameInput" class="fw-bold form-label mb-4">Nombre de usuario</label>
+                        <input type="text" class="form-control" id="usernameInput" name="username">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="pwdInput" class="fw-bold form-label mb-4">Contraseña</label>
+                        <input type="password" class="form-control" id="pwdInput" name="password">
+                    </div>
+
+                    {{#if errorMessage}}
+                    <div id="error">
+                        <p>{{errorMessage}}</p>
+                    </div>
+                    {{/if}}
+
+                    <div>
+                        <button type="submit" class="btn btn-primary w-100 mt-4">Registrate</button>
+                    </div>
+                    <div class="separator d-flex align-items-center justify-content-center text-center mt-5">
+                        <hr class="w-100">
+                        <p class="w-100 pt-2 text-muted px-2">O Registrate Con</p>
+                        <hr class="w-100">
+                    </div>
+
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-danger w-100 mt-4 me-3">Google+</button>
+                        <button type="submit" class="btn btn-secondary w-100 mt-4">Github</button>
+                    </div>
+                    <p class="text-center mt-3 fs-5">Ya tienes una cuenta!
+                        <a class="text-decoration-none fw-bold" href="/iniciar-sesion">Inicia Sesion</a>
+                    </p>
+
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <a href="/">
+                <img class="w-100" src="/images/ironhack-login.png" alt="">
+            </a>
         </div>
     </div>
 </div>
