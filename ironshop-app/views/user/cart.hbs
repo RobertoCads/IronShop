@@ -1,26 +1,14 @@
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-4">
-            <div class="list-group">
-                <a class="list-group-item" href="/admin">Perfil</a>
-                <a class="list-group-item active" aria-current="true" href="/admin/productos">Productos</a>
-                <a class="list-group-item" href="/admin/usuarios">Usuarios</a>
-                <a class="list-group-item" href="/admin/comentarios">Comentarios</a>
-            </div>
-        </div>
         <div class="col-md-8">
             <table class="table align-middle">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Imagen</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Category</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Categoría</th>
+                        <th scope="col">Cantidad</th>
                         <th scope="col">Precio</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col" width="150px">
-                            <a class="btn btn-primary btn-sm" href="/admin/productos/crear">Add new product</a>
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,6 +41,13 @@
                     </tr>
                     {{/each}}
                 </tbody>
+
+                <thead>
+                    <tr>
+                        <th scope="col" id="total-value">Total: <span>0</span>€</th>
+                        <th><a href="#" class="btn btn-primary">Pagar</a></th>
+                    </tr>
+                </thead>
             </table>
         </div>
     </div>

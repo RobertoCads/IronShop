@@ -2,14 +2,13 @@
     <div class="row">
         <div class="col-md-4">
             <div class="list-group">
-                <a class="list-group-item active" aria-current="true" href="/admin">Perfil</a>
-                <a class="list-group-item" href="/admin/productos">Productos</a>
-                <a class="list-group-item" href="/admin/usuarios">Usuarios</a>
-                <a class="list-group-item" href="/admin/comentarios">Comentarios</a>
+                <a class="list-group-item active" aria-current="true" href="/perfil">Perfil</a>
+                <a class="list-group-item" href="/perfil/productos">Productos</a>
+                <a class="list-group-item" href="/perfil/comentarios">Comentarios</a>
             </div>
         </div>
         <div class="col-md-8">
-            <form action="/admin" method="POST">
+            <form action="/perfil" method="POST">
                 <div class="mb-3">
                     <label for="inputName" class="form-label">Nombre de Usuario</label>
                     <input type="text" id="inputName" class="form-control" name="username">
@@ -19,10 +18,6 @@
                     <input type="password" class="form-control" id="inputPassword" name="passwordHash">
                 </div>
                 <button type="submit" class="btn btn-primary">Editar</button>
-            </form>
-
-            <form action="/cerrar-sesion" method="POST">
-                <button class="nav-link">Logout</button>
             </form>
         </div>
     </div>

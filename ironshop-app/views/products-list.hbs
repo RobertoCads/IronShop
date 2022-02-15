@@ -1,4 +1,24 @@
-<h1>hola mundo</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md4 d-flex">
+            {{#each products}}
+            <div class="card me-5 mt-5" style="width: 18rem;">
+                <img src="{{image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                    <p class="card-text">{{price}} €</p>
+                    <a href="/producto/{{id}}" class="btn btn-primary">Ver detalles</a>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        
+    </div>
+    
+</div>
+
+
+{{!-- <h1>hola mundo</h1>
 
 Categoria: {{category}}
 
@@ -10,4 +30,4 @@ Categoria: {{category}}
 </div>
 
 
-{{/each}}
+{{/each}} --}}
