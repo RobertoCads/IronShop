@@ -1,0 +1,39 @@
+<div class="container">
+    <h1>Editar</h1>
+
+    
+    <form action="/admin/productos/{{_id}}/editar" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="titleInput" class="form-label">Name</label>
+            <input type="text" class="form-control" id="titleInput" name="name" value="{{name}}">
+        </div>
+        <div class="mb-3">
+            <label for="categoryInput" class="form-label">Category</label>
+            <select class="form-select form-select-md" aria-label=".form-select-sm example" id="categoryInput"
+                name="category">
+                <option selected>Selecciona una categoria</option>
+                <option value="Botella">Botella</option>
+                <option value="Camiseta">Camiseta</option>
+                <option value="Sudadera">Sudadera</option>
+                <option value="Taza">Taza</option>
+                <option value="Pegatina">Pegatina</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="descripInput" class="form-label">Description</label>
+            <input type="text" class="form-control" id="descripInput" name="description" value="{{description}}">
+        </div>
+        <div class="mb-3">
+            <label for="priceInput" class="form-label">Price</label>
+            <input type="text" class="form-control" id="priceInput" name="price" value="{{price}}">
+        </div>
+        <div class="mb-3">
+            <label for="imageInput" class="form-label">Imagen</label>
+            <input type="file" class="form-control" id="imageInput" name="imageFile">
+        </div>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary btn-block">Editar Producto</button>
+        </div>
+    </form>
+    
+</div>

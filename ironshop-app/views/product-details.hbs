@@ -1,0 +1,16 @@
+<div class="container">
+    {{#each product}}
+    <h1>{{name}}</h1>
+
+    <div class="row">
+        <div class="col-md6 d-flex">
+            <img src="{{image}}" alt="">
+            <div class="d-flex flex-column">
+            <p>{{description}}</p>
+                <p>{{price}}</p>
+            </div>
+            
+        </div>
+    </div>
+    {{/each}}
+</div>

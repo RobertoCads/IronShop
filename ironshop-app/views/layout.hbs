@@ -60,6 +60,9 @@
       </div>
    </div>
 
+
+   {{#unless isAdmin}}
+
    <nav class="navbar navbar-expand-lg navbar-light bg-white {{#if hideNavbar}}d-none{{/if}}">
       <div class="container-fluid">
          <a class="navbar-brand" href="/">
@@ -94,14 +97,15 @@
 
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                {{#if isLoggedIn}}
+               {{#if isUser}}
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                      data-bs-toggle="dropdown" aria-expanded="false">
-                     Foto
+                     {{username}}
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                     <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
-                     <li><a class="dropdown-item" href="#">Pedidos</a></li>
+                     <li><a class="dropdown-item" href="/perfil">Mi Perfil</a></li>
+                     <li><a class="dropdown-item" href="/carrito">Carrito</a></li>
                      <li>
                         <hr class="dropdown-divider">
                      </li>
@@ -112,6 +116,7 @@
                      </li>
                   </ul>
                </li>
+               {{/if}}
                {{/if}}
 
 
@@ -130,6 +135,7 @@
          </div>
       </div>
    </nav>
+   {{/unless}}
 
 
    {{{body}}}
@@ -223,8 +229,3 @@
 </body>
 
 </html>
-
-
-
-
-{{!-- // PARA PONER EL DROPDOWN CUANDO EL USUARIO INICIE SESIÓN //////////////// --}}

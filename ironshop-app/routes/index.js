@@ -15,4 +15,15 @@ router.get("/productos/cat/:category", (req, res, next) => {
   );
 })
 
+router.get("/producto/:id", (req, res, next) => {
+  const { id } = req.params
+
+  Product
+      .findById(id)
+      .then(product => {
+        res.render("product-details", {product})
+      })
+      .catch(err => next(err))
+})
+
 module.exports = router;

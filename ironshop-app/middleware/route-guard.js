@@ -4,10 +4,20 @@ const isLoggedIn = (req, res, next) => {
     }
 }
 
+// const checkRole = (...admittedRoles) => (req, res, next) => {
+//     admittedRoles.includes(req.session.currentUser.role) ? next() : res.redirect("/iniciar-sesion"), {
+//         errorMessage: "No tienes los permisos necesarios"
+//     }
+// }
+
+
 const checkRole = (...admittedRoles) => (req, res, next) => {
-    admittedRoles.includes(req.session.currentUser.role) ? next() : res.render("auth/login"), {
-        errorMessage: "No tienes los permisos necesarios"
+    if(admittedRoles.includes(req.session.currentUser.role)) {
+        next()
+    } else {
+        req.session.destroy(() => res.redirect("/iniciar-sesion"))
+        {errorMessage: "No tienes los permisos necesarios"}
     }
-} 
+}
 
 module.exports = { isLoggedIn, checkRole }

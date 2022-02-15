@@ -2,7 +2,7 @@ const router = require("express").Router()
 const bcryptjs = require("bcryptjs")
 const { findOne } = require("../models/User.model")
 
-const { isLoggedIn, checkRoles } = require("../middleware/route-guard")
+const { isLoggedIn, checkRole } = require("../middleware/route-guard")
 const {isAdmin, isUser} = require("../utils")
 
 const User = require("../models/User.model")
@@ -37,7 +37,7 @@ router.post("/iniciar-sesion", (req, res, next) => {
     if (!email.length || !password.length) {
         res.render("auth/login", {errorMessage: "Rellena todos los campos"})
         return
-    }
+    } 
 
     User
         .findOne({ email })
@@ -51,7 +51,16 @@ router.post("/iniciar-sesion", (req, res, next) => {
             } else {
                 req.session.currentUser = user
                 req.app.locals.isLoggedIn = true
-                res.redirect("/")
+                req.app.locals.isUser = true
+                req.app.locals.username = user.username
+                
+                if (isAdmin(user)) {
+                    req.app.locals.isAdmin = true
+                    res.redirect("/admin")
+                } else {
+                    res.redirect("/")
+                }
+                
             }
         })
         .catch(err => next(err))
@@ -71,6 +80,9 @@ router.post("/iniciar-sesion", (req, res, next) => {
 
 router.post("/cerrar-sesion", (req, res) => {
     req.app.locals.isLoggedIn = false
+    req.app.locals.isAdmin = false
+    req.app.locals.isUser = false
+    req.app.locals.username = undefined
     req.session.destroy(() => res.redirect("/iniciar-sesion"))
 })
 
