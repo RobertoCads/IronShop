@@ -4,7 +4,6 @@ const isLoggedIn = (req, res, next) => {
     }
 }
 
-
 const checkRole = (...admittedRoles) => (req, res, next) => {
     admittedRoles.includes(req.session.currentUser.role) ? next() : res.render("auth/login"), {
         errorMessage: "No tienes los permisos necesarios"

@@ -8,6 +8,7 @@ body {
 
 .top-nav {
   height: 50px;
+  background-color: #f2f2f2;
   border-bottom: 1px solid #e1e7ec;
 }
 
@@ -76,10 +77,75 @@ body {
 }
 
 #error {
-  background-color: red;
+  background-color: var(--bs-danger);
   color: white;
   text-align: center;
   padding: 5px;
   font-weight: 800;
   margin-top: 20px;
+}
+
+.carousel-item {
+  position: relative;
+  height: 600px;
+}
+
+.carousel-item img {
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  min-height: 400px;
+}
+
+.carousel-item h2 {
+  position: absolute;
+  top: 200px;
+  right: 80px;
+  color: white;
+  font-size: 60px;
+}
+
+.carousel-item a {
+  position: absolute;
+  top: 450px;
+  right: 180px;
+}
+
+/* .product-card {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 18px;
+  border: 1px solid #e1e7ec;
+  background-color: #fff;
+} */
+
+.card {
+  border-radius: 7px;
+
+}
+
+.card-bg {
+  background-color: #cce8fa;
+  border-radius: 7px;
+
+}
+
+.card-bg img {
+  object-fit: contain;
+  height: 250px;
+  width: 253px;
+  padding: 20px;
+
+}
+
+footer {
+  border-top: 1px solid #e1e7ec;
+  padding: 40px 50px;
+  background-color: #f2f2f2;
+}
+
+footer .contact input {
+  height: 40px;
+  width: 50%;
 }
