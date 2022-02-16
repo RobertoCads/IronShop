@@ -23,6 +23,7 @@ router.get("/producto/:id", (req, res, next) => {
   Promise.all([
     Product.findById(id),
     Rating.find({ product: id })
+    .populate("user")
   ])
 
   .then(([product, ratings]) => {

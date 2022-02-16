@@ -1,4 +1,4 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
             aria-current="true" aria-label="Slide 1"></button>
@@ -37,22 +37,23 @@
     </button>
 </div>
 
-<div class="container mt-5">
+<div class="container pt-5">
     <h2 class="text-center">PRODUCTOS DESTACADOS</h2>
     <div class="row">
         {{#each products}}
         <div class="col-md-4 col-sm-3">
-            <div class="card mt-5" style="width: 20rem;">
+            <div class="card mt-5 mx-auto" style="width: 20rem;">
                 <div class="card-bg">
                     <a href="/producto/{{id}}" class="text-center">
                         <img src="{{image}}" alt="image-product" class="img-fluid" />
                     </a>
                 </div>
+                <hr>
                 <div class="card-body p-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <p class="card-title text-secondary fw-bold">{{name}}</p>
-                            <div class="rating" data-rating="3"></div>
+                            <div class="rating" data-rating={{rating}}></div>
                         </div>
                         <p class="card-title text-center text-secondary fs-4">{{price}}€</p>
                     </div>
@@ -65,6 +66,32 @@
             </div>
         </div>
         {{/each}}
+    </div>
+    <div class="row my-5">
+        <div class="col-md-3 col-sm-6 text-center">
+            <img width="90px" src="/images/01.png" alt="Shipping"
+                class="d-block img-thumbnail rounded-circle mx-auto mb-3">
+            <h6>Free Worldwide Shipping</h6>
+            <p class="text-muted margin-bottom-none">Free shipping for all orders over $100</p>
+        </div>
+        <div class="col-md-3 col-sm-6 text-center">
+            <img width="90px" src="/images/02.png" alt="Money Back"
+                class="d-block img-thumbnail rounded-circle mx-auto mb-3">
+            <h6>Money Back Guarantee</h6>
+            <p class="text-muted margin-bottom-none">We return money within 30 days</p>
+        </div>
+        <div class="col-md-3 col-sm-6 text-center">
+            <img width="90px" src="/images/03.png" alt="Support"
+                class="d-block img-thumbnail rounded-circle mx-auto mb-3">
+            <h6>24/7 Customer Support</h6>
+            <p class="text-muted margin-bottom-none">Friendly 24/7 customer support</p>
+        </div>
+        <div class="col-md-3 col-sm-6 text-center">
+            <img width="90px" src="/images/04.png" alt="Payment"
+                class="d-block img-thumbnail rounded-circle mx-auto mb-3">
+            <h6>Secure Online Payment</h6>
+            <p class="text-muted margin-bottom-none">We posess SSL / Secure Certificate</p>
+        </div>
     </div>
 </div>
 <script src="/js/rating.js"></script>

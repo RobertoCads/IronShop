@@ -1,23 +1,70 @@
-<div class="container mt-5">
+
+<div class="container my-5 profile">
     <div class="row">
-        <div class="col-md-4">
-            <div class="list-group">
-                <a class="list-group-item active" aria-current="true" href="/perfil">Perfil</a>
-                <a class="list-group-item" href="/perfil/productos">Productos</a>
-                <a class="list-group-item" href="/perfil/comentarios">Comentarios</a>
+        <div class="col-lg-4">
+            <div class="profile-card border">
+                <div class="profile-card-header">
+                    <div class="row">
+                        <div class="col-5 d-flex justify-content-center">
+                            <img class="rounded-circle shadow" src="/images/avatar-profile.png" alt="" width="85px">
+                        </div>
+                        <div class="col-7 pt-2">
+                            <p class="text-dark fw-normal">{{username}}</p>
+                            <p class="text-muted"></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="profile-card-body">
+                    <nav class="nav nav-pills nav-fill flex-column">
+                        <a class="nav-link active" href="/perfil">
+                            <ion-icon name="person-circle-outline"></ion-icon>
+                            <span>Perfil</span>
+                        </a>
+                        <a class="nav-link" href="/perfil/productos">
+                            <ion-icon name="reader-outline"></ion-icon>
+                            <span>Lista de compra</span>
+                        </a>
+                        <a class="nav-link" href="/perfil/comentarios">
+                            <ion-icon name="clipboard-outline"></ion-icon>
+                            <span>Comentarios</span>
+                        </a>
+                    </nav>
+                </div>
             </div>
         </div>
-        <div class="col-md-8">
-            <form action="/perfil" method="POST">
-                <div class="mb-3">
-                    <label for="inputName" class="form-label">Nombre de Usuario</label>
-                    <input type="text" id="inputName" class="form-control" name="username">
+        <div class="col-lg-8">
+            <form method="POST" action="/perfil" class="row mt-3 mt-lg-0">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-fn">Nombre Usuario</label>
+                        <input type="text" name="username" value="{{username}}" required="" class="form-control">
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="inputPassword" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="inputPassword" name="passwordHash">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-email">Email</label>
+                        <input type="email" name="email" value="{{email}}" disabled="" class="form-control">
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Editar</button>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-pass">Nueva contraseña</label>
+                        <input type="password" name="passwordHash" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-confirm-pass">Confirmar contraseña</label>
+                        <input type="password" name="passwordHash2" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <hr class="mt-2 mb-3">
+                    <div class="d-flex">
+                        <button class="ms-auto btn btn-primary">Actualizar</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
