@@ -6,6 +6,10 @@ body {
   color: #606975;
 }
 
+main {
+  min-height: calc(100vh - 50px - 60px - 300px);
+}
+
 .top-nav {
   height: 50px;
   background-color: #f2f2f2;
@@ -128,15 +132,13 @@ body {
 .card-bg {
   background-color: #cce8fa;
   border-radius: 7px;
-
 }
 
 .card-bg img {
   object-fit: contain;
   height: 250px;
-  width: 253px;
+  width: 280px;
   padding: 20px;
-
 }
 
 footer {

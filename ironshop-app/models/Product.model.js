@@ -10,6 +10,7 @@ const productSchema = new Schema(
       type: String,
       enum: ["Botella", "Camiseta", "Sudadera", "Taza", "Pegatina"],
     },
+    featured: Boolean
   },
   {
     timestamps: true,
