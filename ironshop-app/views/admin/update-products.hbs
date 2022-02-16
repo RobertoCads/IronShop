@@ -4,11 +4,11 @@
     
     <form action="/admin/productos/{{_id}}/editar" method="POST" enctype="multipart/form-data">
         <div class="mb-3">
-            <label for="titleInput" class="form-label">Name</label>
+            <label for="titleInput" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="titleInput" name="name" value="{{name}}">
         </div>
         <div class="mb-3">
-            <label for="categoryInput" class="form-label">Category</label>
+            <label for="categoryInput" class="form-label">Categoría</label>
             <select class="form-select form-select-md" aria-label=".form-select-sm example" id="categoryInput"
                 name="category">
                 <option selected>Selecciona una categoria</option>
@@ -20,11 +20,11 @@
             </select>
         </div>
         <div class="mb-3">
-            <label for="descripInput" class="form-label">Description</label>
+            <label for="descripInput" class="form-label">Descripción</label>
             <input type="text" class="form-control" id="descripInput" name="description" value="{{description}}">
         </div>
         <div class="mb-3">
-            <label for="priceInput" class="form-label">Price</label>
+            <label for="priceInput" class="form-label">Precio</label>
             <input type="text" class="form-control" id="priceInput" name="price" value="{{price}}">
         </div>
         <div class="mb-3">
