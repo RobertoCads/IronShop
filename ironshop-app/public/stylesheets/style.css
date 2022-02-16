@@ -154,6 +154,11 @@ footer .contact input {
 
 
 /* ///////////// DETALLES PRODUCTOS /////////////*/
+
+.product-detail-main h1 {
+  margin-top: 40px
+}
+
 .product-detail {
   display: flex;
   align-items: center;
