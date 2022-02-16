@@ -4,26 +4,27 @@ const router = require("express").Router();
 
 /* GET home page */
 router.get("/", (req, res, next) => {
-  res.render("index");
+  Product.find({ featured: true })
+  .limit(3)
+  .then((products) =>  res.render("index", {  products }))
 });
 
 router.get("/productos/cat/:category", (req, res, next) => {
-  const { category } = req.params
+  const { category } = req.params;
   // console.log(category)
   Product.find({ category }).then((products) =>
     res.render("products-list", { category, products })
   );
-})
+});
 
 router.get("/producto/:id", (req, res, next) => {
-  const { id } = req.params
+  const { id } = req.params;
 
-  Product
-      .findById(id)
-      .then(product => {
-        res.render("product-details", {product})
-      })
-      .catch(err => next(err))
-})
+  Product.findById(id)
+    .then((product) => {
+      res.render("product-details", { product });
+    })
+    .catch((err) => next(err));
+});
 
 module.exports = router;
