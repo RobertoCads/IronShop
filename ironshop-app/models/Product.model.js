@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose")
 
 const productSchema = new Schema(
   {
@@ -15,8 +15,8 @@ const productSchema = new Schema(
   {
     timestamps: true,
   }
-);
+)
 
-const Product = model("Product", productSchema);
-Product.syncIndexes();
-module.exports = Product;
+const Product = model("Product", productSchema)
+Product.syncIndexes()
+module.exports = Product
