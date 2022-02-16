@@ -122,7 +122,7 @@ body {
 
 .card {
   border-radius: 7px;
-
+  padding: 20px;
 }
 
 .card-bg {
