@@ -156,12 +156,66 @@
    </nav>
    {{/unless}}
 
+
+
+   {{!-- // NAVBAR DEL ADMINISTRADOR ////////////////// --}}
+
+   {{#if isAdmin}}
+   <nav class="navbar navbar-expand-lg navbar-light bg-white {{#if hideNavbar}}d-none{{/if}} nav-shadow sticky-top">
+      <div class="container-fluid">
+         <a class="navbar-brand" href="/">
+            <img
+               src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/ajracsdqu5gmyfl6nai0"
+               alt="logo-img">
+         </a>
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+               {{#if isLoggedIn}}
+               <div class="btn-group dropstart">
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                     aria-expanded="false">
+                     {{username}}
+                  </button>
+                  <ul class="dropdown-menu shadow p-3 mb-5 bg-white rounded">
+                     <li><a class="dropdown-item" href="/admin">Mi Perfil</a></li>
+                     <li>
+                        <hr class="dropdown-divider">
+                     </li>
+                     <li class="nav-item">
+                        <form action="/cerrar-sesion" method="POST">
+                           <button class="btn btn-secondary">Logout</button>
+                        </form>
+                     </li>
+                  </ul>
+               </div>
+               {{/if}}
+   
+               {{#unless isLoggedIn}}
+               <li class="nav-item">
+                  <a class="nav-link" href="/iniciar-sesion">Log In</a>
+               </li>
+   
+               <li class="nav-item">
+                  <a class="nav-link" href="/registro">Sign Up</a>
+               </li>
+               {{/unless}}
+            </ul>
+   
+         </div>
+      </div>
+   </nav>
+   {{/if}}
+
    <main>
    {{{body}}}
 
    
    </main>
-   {{#unless isAdmin}}
    <footer class="mt-5">
       <div class="row">
          <div class="col-md-6 d-flex justify-content-center align-items-center">
@@ -187,10 +241,10 @@
                <div class="col-md-4">
                   <div class="me-5">
                      <p class="fw-bold mb-3">AYUDA</p>
-                     <p>Shipping</p>
-                     <p>Return Policy</p>
+                     <p>Envío</p>
+                     <p>Política de Devolución</p>
                      <p>FAQ</p>
-                     <p>contact Us</p>
+                     <p>Contactanos</p>
                   </div>
                </div>
             </div>
@@ -245,7 +299,6 @@
          </div>
       </div>
    </footer>
-   {{/unless}}
 
    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
