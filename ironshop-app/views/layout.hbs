@@ -89,7 +89,7 @@
                   <a class="nav-link" href="/productos/cat/Taza">TAZAS</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="/productos/cat/Pegatina">PEGATINAS</a>
+                  <a class="nav-link" href="/productos/cat/Mochila">MOCHILAS</a>
                </li>
             </ul>
 
@@ -128,25 +128,6 @@
                      </li>
                   </ul>
                </li>
-
-               <div class="btn-group dropstart">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                     {{username}}
-                  </button>
-                  <ul class="dropdown-menu shadow p-3 mb-5 bg-white rounded">
-                     <li><a class="dropdown-item" href="/perfil">Mi Perfil</a></li>
-                     <li><a class="dropdown-item" href="/carrito">Carrito</a></li>
-                     <li>
-                        <hr class="dropdown-divider">
-                     </li>
-                     <li class="nav-item">
-                        <form action="/cerrar-sesion" method="POST">
-                           <button class="btn btn-secondary">Logout</button>
-                        </form>
-                     </li>
-                  </ul>
-               </div>
-
                {{/if}}
                {{/if}}
 
@@ -170,7 +151,7 @@
 
 
 
-   {{!-- // NAVBAR DEL ADMINISTRADOR ////////////////// --}}
+   {{!-- // ADMIN'S NAVBAR ////////////////// --}}
 
    {{#if isAdmin}}
    <nav class="navbar navbar-expand-lg navbar-light bg-white {{#if hideNavbar}}d-none{{/if}} nav-shadow sticky-top">
@@ -185,28 +166,38 @@
             <span class="navbar-toggler-icon"></span>
          </button>
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            
+
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                {{#if isLoggedIn}}
-               <div class="btn-group dropstart">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+               {{#if isUser}}
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                      aria-expanded="false">
                      {{username}}
-                  </button>
-                  <ul class="dropdown-menu shadow p-3 mb-5 bg-white rounded">
-                     <li><a class="dropdown-item" href="/admin">Mi Perfil</a></li>
+                  </a>
+                  <ul class="dropdown-align-right dropdown-menu shadow p-3 mb-5 bg-white rounded me-5"
+                     aria-labelledby="navbarDropdown">
+                     <li>
+                        <a class="dropdown-item " href="/admin">
+                           <ion-icon class="me-2" name="person-outline"></ion-icon>Mi Perfil
+                        </a>
+                     </li>
                      <li>
                         <hr class="dropdown-divider">
                      </li>
-                     <li class="nav-item">
-                        <form action="/cerrar-sesion" method="POST">
-                           <button class="btn btn-secondary">Logout</button>
-                        </form>
+                     <li>
+                        <div class="dropdown-item">
+                           <form class="d-flex align-items-center justify-content-left" action="/cerrar-sesion" method="POST">
+                              <ion-icon class="me-2" name="lock-open-outline"></ion-icon>
+                              <button class="btn btn-link text-decoration-none text-muted p-0">Logout</button>
+                           </form>
+                        </div>
                      </li>
                   </ul>
-               </div>
+               </li>
                {{/if}}
-   
+               {{/if}}
+            
                {{#unless isLoggedIn}}
                <li class="nav-item">
                   <a class="nav-link" href="/iniciar-sesion">Log In</a>
@@ -247,7 +238,7 @@
                      <p>Camisetas</p>
                      <p>Sudaderas</p>
                      <p>Tazas</p>
-                     <p>Pegatinas</p>
+                     <p>Mochilas</p>
                   </div>
                </div>
                <div class="col-md-4">

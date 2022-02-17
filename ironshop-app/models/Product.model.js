@@ -8,7 +8,7 @@ const productSchema = new Schema(
     image: String,
     category: {
       type: String,
-      enum: ["Botella", "Camiseta", "Sudadera", "Taza", "Pegatina"],
+      enum: ["Botella", "Camiseta", "Sudadera", "Taza", "Mochila"],
     },
     featured: Boolean
   },

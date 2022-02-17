@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row mt-5">
-        <div class="col-md-6 pe-5">
-            <img src="{{product.image}}" alt="{{product.name}} " width="100%">
+        <div class="col-md-5 ps-5">
+            <img class="image-fluid" src="{{product.image}}" alt="{{product.name}}" style="margin-left: 100px; height: 500px">
         </div>
-        <div class="col-md-6 ps-5">
+        <div class="col-md-6 pe-5">
             <h1 class="text-right">{{product.name}}</h1>
             <div class="d-flex align-items-center">
                 <hr class="w-100">
@@ -16,7 +16,10 @@
                 </p>
                 <p class="fs-4">Precio unidad sin serigrafia</p>
                 <p class="fs-5">IVA incluido</p>
-                <a href="" class="btn btn-primary">Añadir al carrito</a>
+                <form action="/carrito" method="POST">
+                    <input type="text" value="{{product._id}}" name="productId" hidden readonly>
+                    <button class="btn btn-primary" type="submit">Añadir al Carrito</button>
+                </form>
             </div>
             <hr>
             <p class="fs-5">
@@ -41,6 +44,8 @@
         <hr>
         {{/each}}
     </div>
+
+    {{#if isUser}}
     <form action="/producto/{{product.id}}" method="POST">
         <p class="fs-3 mt-5 fw-bold">Valora este producto</p>
         <div class="mb-3">
@@ -54,14 +59,7 @@
             <button type="submit" class="ms-auto btn btn-primary">Guardar</button>
         </div>
     </form>
-    {{!-- <div class="p-2">
-        <form action="/producto/{{product.id}}" method="POST">
-            <button type="submit" class="btn btn-danger mb-3">
-                Borrar rating
-            </button>
-        </form>
-
-    </div> --}}
+    {{/if}}
 </div>
 
 
