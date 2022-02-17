@@ -1,10 +1,11 @@
 const router = require("express").Router()
 const bcryptjs = require("bcryptjs")
 const { isLoggedIn, checkRole } = require("../middleware/route-guard")
-const { isAdmin, isUser } = require("../utils")
-const Product = require("../models/Product.model")
+// const { isAdmin, isUser } = require("../utils")
+// const Product = require("../models/Product.model")
 const User = require("../models/User.model")
-const { Router } = require("express")
+const Cart = require("../models/Cart.model")
+// const { Router } = require("express")
 const saltRounds = 10
 
 
@@ -20,10 +21,11 @@ router.get("/perfil", isLoggedIn, checkRole("USER"), (req, res, next) => {
         .catch(err => next(err))
 })
 
+
 router.post("/perfil", isLoggedIn, checkRole("USER"), (req, res, next) => {
     const id = req.session.currentUser._id
     const { username, passwordHash } = req.body
-    console.log(req.body)
+
 
     bcryptjs
         .genSalt(saltRounds)
@@ -41,12 +43,44 @@ router.post("/perfil", isLoggedIn, checkRole("USER"), (req, res, next) => {
 
 
  // CARRITO ////////////////
- router.get("/carrito", isLoggedIn, checkRole("USER"), (req, res, next) => {
-     res.render("user/cart")
- })
+router.get("/carrito", isLoggedIn, checkRole("USER"), (req, res, next) => {
+    const id = req.session.currentUser._id
+
+    Cart
+        .findOne({user: id})
+        .populate("product")
+        .then(cart => {
+            res.render("user/cart", {cart})
+        })
+        .catch(err => next(err))
+})
+
+router.post("/carrito", isLoggedIn, checkRole("USER"), (req, res, next) => {
+    const {productId} = req.body
+    const id = req.session.currentUser._id
+
+    Cart
+        .findOneAndUpdate({user: id}, {$push: {product: productId}})
+        .then(() => {
+            res.redirect("/carrito")
+        })
+        .catch(err => next(err))
+})
 
 
+// BORRAR PRODUCTOS DEL CARRITO ////////////////
 
+router.post("/carrito/:productId/borrar", isLoggedIn, checkRole("USER"), (req, res, next) => {
+    const id = req.session.currentUser._id
+    const { productId } = req.params
+
+    Cart
+        .findOneAndUpdate({ user: id }, { $pull: { product: productId } })
+        .then(() => {
+            res.redirect("/carrito")
+        })
+        .catch(err => next(err))
+})
 
 
 module.exports = router

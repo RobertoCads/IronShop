@@ -6,6 +6,7 @@ const { isLoggedIn, checkRole } = require("../middleware/route-guard")
 const {isAdmin, isUser} = require("../utils")
 
 const User = require("../models/User.model")
+const Cart = require("../models/Cart.model")
 const saltRounds = 10
 
 
@@ -21,6 +22,12 @@ router.post("/registro", (req, res, next) => {
         .genSalt(saltRounds)
         .then(salt => bcryptjs.hash(password, salt))
         .then(hashedPassword => User.create({ username, email, passwordHash: hashedPassword}))
+        .then(user => {
+            if(isUser(user)) {
+                return Cart.create({ user: user._id, product: [] })
+            }
+            return
+        })
         .then(() => res.redirect("/"))
         .catch(err => next(err))
 })
@@ -28,7 +35,7 @@ router.post("/registro", (req, res, next) => {
 
 // LOG IN /////////////////////
 router.get("/iniciar-sesion", (req, res, next) => {
-    res.render("auth/login", { hideNavbar: true });
+    res.render("auth/login", { hideNavbar: true })
 })
 
 router.post("/iniciar-sesion", (req, res, next) => {
@@ -58,7 +65,7 @@ router.post("/iniciar-sesion", (req, res, next) => {
                     req.app.locals.isAdmin = true
                     res.redirect("/admin")
                 } else {
-                    req.app.locals.isAdmin = false;
+                    req.app.locals.isAdmin = false
                     res.redirect("/")
                 }
                 
@@ -66,14 +73,6 @@ router.post("/iniciar-sesion", (req, res, next) => {
         })
         .catch(err => next(err))
 })
-
-
-
-
-
-// ADMIN /////////////////////
-
-
 
 
 

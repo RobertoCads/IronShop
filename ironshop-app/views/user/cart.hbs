@@ -7,14 +7,13 @@
                         <th scope="col">Imagen</th>
                         <th scope="col">Producto</th>
                         <th scope="col">Categoría</th>
-                        <th scope="col">Cantidad</th>
+                        {{!-- <th scope="col">Cantidad</th> --}}
                         <th scope="col">Precio</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each products}}
+                    {{#each cart.product}}
                     <tr>
-                        <th scope="row">1</th>
                         <td>
                             <img src="{{image}}" alt="{{name}}" class="img-fluid" width="50px" height="50px">
                         </td>
@@ -25,15 +24,11 @@
                             {{category}}
                         </td>
                         <td>
-                            {{price}}
-                        </td>
-                        <td>
-                            {{description}}
+                            {{price}} €
                         </td>
                         <td>
                             <div class="d-flex justify-content-between">
-                                <a class="btn btn-warning btn-sm" href="/admin/productos/{{_id}}/editar">Editar</a>
-                                <form action="/admin/productos/{{_id}}/borrar" method="POST">
+                                <form action="/carrito/{{id}}/borrar" method="POST">
                                     <button type="submit" class="btn btn-danger btn-sm" href="">Borrar</button>
                                 </form>
                             </div>

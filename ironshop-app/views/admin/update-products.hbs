@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Editar</h1>
+    <h1 style="margin-top: 40px;">Editar</h1>
 
     
     <form action="/admin/productos/{{_id}}/editar" method="POST" enctype="multipart/form-data">
@@ -22,6 +22,12 @@
         <div class="mb-3">
             <label for="descripInput" class="form-label">Descripción</label>
             <input type="text" class="form-control" id="descripInput" name="description" value="{{description}}">
+        </div>
+        <div class="mb-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input" name="featured" type="checkbox" id="flexSwitchCheckDefault" value="true">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Featured</label>
+            </div>
         </div>
         <div class="mb-3">
             <label for="priceInput" class="form-label">Precio</label>

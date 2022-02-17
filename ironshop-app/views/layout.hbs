@@ -63,7 +63,7 @@
 
    {{#unless isAdmin}}
 
-   <nav class="navbar navbar-expand-lg navbar-light bg-white {{#if hideNavbar}}d-none{{/if}} nav-shadow">
+   <nav class="navbar navbar-expand-lg navbar-light bg-white {{#if hideNavbar}}d-none{{/if}} nav-shadow sticky-top">
       <div class="container-fluid">
          <a class="navbar-brand" href="/">
             <img
@@ -128,6 +128,25 @@
                      </li>
                   </ul>
                </li>
+
+               <div class="btn-group dropstart">
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                     {{username}}
+                  </button>
+                  <ul class="dropdown-menu shadow p-3 mb-5 bg-white rounded">
+                     <li><a class="dropdown-item" href="/perfil">Mi Perfil</a></li>
+                     <li><a class="dropdown-item" href="/carrito">Carrito</a></li>
+                     <li>
+                        <hr class="dropdown-divider">
+                     </li>
+                     <li class="nav-item">
+                        <form action="/cerrar-sesion" method="POST">
+                           <button class="btn btn-secondary">Logout</button>
+                        </form>
+                     </li>
+                  </ul>
+               </div>
+
                {{/if}}
                {{/if}}
 
@@ -149,39 +168,95 @@
    </nav>
    {{/unless}}
 
+
+
+   {{!-- // NAVBAR DEL ADMINISTRADOR ////////////////// --}}
+
+   {{#if isAdmin}}
+   <nav class="navbar navbar-expand-lg navbar-light bg-white {{#if hideNavbar}}d-none{{/if}} nav-shadow sticky-top">
+      <div class="container-fluid">
+         <a class="navbar-brand" href="/">
+            <img
+               src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/ajracsdqu5gmyfl6nai0"
+               alt="logo-img">
+         </a>
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+               {{#if isLoggedIn}}
+               <div class="btn-group dropstart">
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                     aria-expanded="false">
+                     {{username}}
+                  </button>
+                  <ul class="dropdown-menu shadow p-3 mb-5 bg-white rounded">
+                     <li><a class="dropdown-item" href="/admin">Mi Perfil</a></li>
+                     <li>
+                        <hr class="dropdown-divider">
+                     </li>
+                     <li class="nav-item">
+                        <form action="/cerrar-sesion" method="POST">
+                           <button class="btn btn-secondary">Logout</button>
+                        </form>
+                     </li>
+                  </ul>
+               </div>
+               {{/if}}
+   
+               {{#unless isLoggedIn}}
+               <li class="nav-item">
+                  <a class="nav-link" href="/iniciar-sesion">Log In</a>
+               </li>
+   
+               <li class="nav-item">
+                  <a class="nav-link" href="/registro">Sign Up</a>
+               </li>
+               {{/unless}}
+            </ul>
+   
+         </div>
+      </div>
+   </nav>
+   {{/if}}
+
    <main>
       {{{body}}}
 
+   
    </main>
-
    <footer class="mt-5">
       <div class="row">
          <div class="col-md-6 d-flex justify-content-center align-items-center">
             <div class="row">
                <div class="col-md-4">
                   <div class="me-5">
-                     <p class="fw-bold mb-3">ABOUT ESQIDO</p>
-                     <p>Esqido is a direct to consumer beauty brand, offering performance cosmetics
-                        that's made with integrity Questions?
-                        <span><a href="">support@esqido.com</a></span>
-                     <p>9131 Keele St Suite A4,Madrid, ON L4K 0G7, Spain</p>
+                     <p class="fw-bold mb-3">SOBRE NOSOTROS</p>
+                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                        <span><a href="">support@ironhack.com</a></span>
+                     <p>Paseo de la Chopera,14 (Matadero - Casa del Lector, Nave Ironhack, 28045 Madrid)</p>
                   </div>
                </div>
                <div class="col-md-4">
                   <div class="me-5">
-                     <p class="fw-bold mb-3">SHOP</p>
-                     <p>Smudge Free Eyeliner</p>
-                     <p>False Eyelashes</p>
-                     <p>Accessories</p>
+                     <p class="fw-bold mb-3">COMPRA</p>
+                     <p>Botellas</p>
+                     <p>Camisetas</p>
+                     <p>Sudaderas</p>
+                     <p>Tazas</p>
+                     <p>Pegatinas</p>
                   </div>
                </div>
                <div class="col-md-4">
                   <div class="me-5">
-                     <p class="fw-bold mb-3">HELP</p>
-                     <p>Shipping</p>
-                     <p>Return Policy</p>
+                     <p class="fw-bold mb-3">AYUDA</p>
+                     <p>Envío</p>
+                     <p>Política de Devolución</p>
                      <p>FAQ</p>
-                     <p>contact Us</p>
+                     <p>Contactanos</p>
                   </div>
                </div>
             </div>
@@ -190,7 +265,7 @@
             <div class="row">
                <div class="col-md-5">
                   <div class="mb-6">
-                     <p class="fw-bold">FOLLOW US</p>
+                     <p class="fw-bold">SIGUENOS</p>
                      <a class="text-decoration-none me-2">
                         <i class="fa-brands fa-facebook fs-3 text-secondary"></i>
                      </a>
@@ -207,8 +282,8 @@
                </div>
                <div class="col-md-7">
                   <div class="contact">
-                     <p class="fw-bold">STAY IN THE LOOP</p>
-                     <p>Be the first to know about special offers and new products</p>
+                     <p class="fw-bold">ESTATE AL LORO</p>
+                     <p>Se el primero en saber sobre ofertas especiales y nuevos productos</p>
                      <div class="d-flex">
                         <input type="text" class="form-control me-2" id="ContactInput" name="email" placeholder="Email">
                         <a class="btn btn-primary btn-lg" href="#">CONTACTO</a>

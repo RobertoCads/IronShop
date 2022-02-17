@@ -4,7 +4,6 @@
             <div class="list-group">
                 <a class="list-group-item active" aria-current="true" href="/admin">Perfil</a>
                 <a class="list-group-item" href="/admin/productos">Productos</a>
-                <a class="list-group-item" href="/admin/usuarios">Usuarios</a>
                 <a class="list-group-item" href="/admin/comentarios">Comentarios</a>
             </div>
         </div>
@@ -18,11 +17,11 @@
                     <label for="inputPassword" class="form-label">Contraseña</label>
                     <input type="password" class="form-control" id="inputPassword" name="passwordHash">
                 </div>
-                <button type="submit" class="btn btn-primary">Editar</button>
+                <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">Editar</button>
             </form>
 
             <form action="/cerrar-sesion" method="POST">
-                <button class="nav-link">Logout</button>
+                <button class="btn btn-secondary">Logout</button>
             </form>
         </div>
     </div>
