@@ -1,0 +1,60 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="list-group">
+                <a class="list-group-item" href="/admin">Perfil</a>
+                <a class="list-group-item active" aria-current="true" href="/admin/productos">Productos</a>
+                <a class="list-group-item" href="/admin/usuarios">Usuarios</a>
+                <a class="list-group-item" href="/admin/comentarios">Comentarios</a>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Categoría</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col" width="150px">
+                            <a class="btn btn-primary btn-sm" href="/admin/productos/crear">Añadir Nuevo Producto</a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each products}}
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>
+                            <img src="{{image}}" alt="{{name}}" class="img-fluid" width="50px" height="50px">
+                        </td>
+                        <td>
+                            {{name}}
+                        </td>
+                        <td>
+                            {{category}}
+                        </td>
+                        <td>
+                            {{price}} €
+                        </td>
+                        <td>
+                            {{description}}
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-between">
+                                <a class="btn btn-warning btn-sm" href="/admin/productos/{{_id}}/editar">Editar</a>
+                                <form action="/admin/productos/{{_id}}/borrar" method="POST">
+                                    <button type="submit" class="btn btn-danger btn-sm" href="">Borrar</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

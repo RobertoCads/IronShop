@@ -1,4 +1,4 @@
-<div class="container mt-5">
+{{!-- <div class="container mt-5">
     <div class="row">
         <div class="col-md-4">
             <div class="list-group">
@@ -23,6 +23,77 @@
 
             <form action="/cerrar-sesion" method="POST">
                 <button class="nav-link">Logout</button>
+            </form>
+        </div>
+    </div>
+</div> --}}
+
+<div class="container my-5 profile">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="profile-card border">
+                <div class="profile-card-header">
+                    <div class="row">
+                        <div class="col-5 d-flex justify-content-center">
+                            <img class="rounded-circle shadow" src="/images/profile-admin.png" alt="" width="85px">
+                        </div>
+                        <div class="col-7 pt-2">
+                            <p class="text-dark fw-normal">{{username}}</p>
+                            <p class="text-muted"></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="profile-card-body">
+                    <nav class="nav nav-pills nav-fill flex-column">
+                        <a class="nav-link active" href="/perfil">
+                            <ion-icon name="person-circle-outline"></ion-icon>
+                            <span>Perfil</span>
+                        </a>
+                        <a class="nav-link" href="/admin/productos">
+                            <ion-icon name="reader-outline"></ion-icon>
+                            <span>Productos</span>
+                        </a>
+                        <a class="nav-link" href="/admin/comentarios">
+                            <ion-icon name="clipboard-outline"></ion-icon>
+                            <span>Comentarios</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <form method="POST" action="/perfil" class="row mt-3 mt-lg-0">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-fn">Nombre Admin</label>
+                        <input type="text" name="username" value="{{username}}" required="" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-email">Email</label>
+                        <input type="email" name="email" value="{{email}}" disabled="" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-pass">Contraseña</label>
+                        <input type="password" name="passwordHash" class="form-control">
+                    </div>
+                </div>
+                {{!-- <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-confirm-pass">Confirmar contraseña</label>
+                        <input type="password" name="passwordHash2" class="form-control">
+                    </div>
+                </div> --}}
+                <div class="col-12">
+                    <hr class="mt-2 mb-3">
+                    <div class="d-flex">
+                        <button class="ms-auto btn btn-primary">Actualizar</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

@@ -58,6 +58,7 @@ router.post("/iniciar-sesion", (req, res, next) => {
                     req.app.locals.isAdmin = true
                     res.redirect("/admin")
                 } else {
+                    req.app.locals.isAdmin = false;
                     res.redirect("/")
                 }
                 
