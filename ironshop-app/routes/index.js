@@ -18,6 +18,8 @@ router.get("/productos/cat/:category", (req, res, next) => {
   )
 })
 
+
+
 router.get("/producto/:id", (req, res, next) => {
   const { id } = req.params
 
