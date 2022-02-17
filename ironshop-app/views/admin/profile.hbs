@@ -1,32 +1,3 @@
-{{!-- <div class="container mt-5">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="list-group">
-                <a class="list-group-item active" aria-current="true" href="/admin">Perfil</a>
-                <a class="list-group-item" href="/admin/productos">Productos</a>
-                <a class="list-group-item" href="/admin/comentarios">Comentarios</a>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <form action="/admin" method="POST">
-                <div class="mb-3">
-                    <label for="inputName" class="form-label">Nombre de Usuario</label>
-                    <input type="text" id="inputName" class="form-control" name="username">
-                </div>
-                <div class="mb-3">
-                    <label for="inputPassword" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="inputPassword" name="passwordHash">
-                </div>
-                <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">Editar</button>
-            </form>
-
-            <form action="/cerrar-sesion" method="POST">
-                <button class="btn btn-secondary">Logout</button>
-            </form>
-        </div>
-    </div>
-</div> --}}
-
 <div class="container my-5 profile">
     <div class="row">
         <div class="col-lg-4">
@@ -62,7 +33,7 @@
             </div>
         </div>
         <div class="col-lg-8">
-            <form method="POST" action="/perfil" class="row mt-3 mt-lg-0">
+            <form method="POST" action="/admin" class="row mt-3 mt-lg-0">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="account-fn">Nombre Admin</label>
@@ -78,15 +49,9 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="account-pass">Contraseña</label>
-                        <input type="password" name="passwordHash" class="form-control">
+                        <input type="password" id="account-pass" name="passwordHash" class="form-control" >
                     </div>
                 </div>
-                {{!-- <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="account-confirm-pass">Confirmar contraseña</label>
-                        <input type="password" name="passwordHash2" class="form-control">
-                    </div>
-                </div> --}}
                 <div class="col-12">
                     <hr class="mt-2 mb-3">
                     <div class="d-flex">

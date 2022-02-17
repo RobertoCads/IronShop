@@ -77,7 +77,6 @@ router.post("/iniciar-sesion", (req, res, next) => {
 
 
 // LOG OUT /////////////////////
-
 router.post("/cerrar-sesion", (req, res) => {
     req.app.locals.isLoggedIn = false
     req.app.locals.isAdmin = false

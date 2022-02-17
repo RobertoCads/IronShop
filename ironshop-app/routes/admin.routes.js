@@ -17,7 +17,6 @@ router.get("/productos/crear", isLoggedIn, checkRole("ADMIN"), (req, res, next) 
 
 router.post( "/productos/crear", fileUploader.single("imageFile"), (req, res, next) => {
     const { name, description, featured, category, price } = req.body
-    console.log(req.body)
 
     Product.create({name, description, featured, category, price, image: req.file.path})
       .then(() => res.redirect("/admin/productos"))
@@ -26,11 +25,12 @@ router.post( "/productos/crear", fileUploader.single("imageFile"), (req, res, ne
 )
 
 router.get("/productos", isLoggedIn, checkRole("ADMIN"), (req, res, next) => {
-  Product.find().then((products) => res.render("admin/products", { products }))
+  Product.find()
+    .then((products) => res.render("admin/products", { products }))
+    .catch(err => next(err))
 })
 
-// EDITAR PRODUCTOS ///////////////////
-
+// EDIT PRODUCTS ///////////////////
 router.get( "/productos/:id/editar", isLoggedIn, checkRole("ADMIN"), (req, res, next) => {
     const { id } = req.params
 
@@ -45,21 +45,19 @@ router.get( "/productos/:id/editar", isLoggedIn, checkRole("ADMIN"), (req, res, 
 router.post("/productos/:id/editar", fileUploader.single("imageFile"), isLoggedIn, checkRole("ADMIN"), (req, res, next) => {
     const { id } = req.params
     const { name, category, featured, description, price } = req.body
-    console.log(id, req.body)
     Product.findByIdAndUpdate(
       id,
       { name, category, description, featured, price, image: req.file?.path },
       { new: true }
     )
       .then((prueba) => {
-        console.log(prueba)
         res.redirect("/admin/productos")
       })
       .catch((err) => next(err))
   }
 )
 
-// EDITAR NOMBRE DE USUARIO ADMIN ///////////////////
+// EDITAR ADMIN'S NAME ///////////////////
 router.get("/", isLoggedIn, checkRole("ADMIN"), (req, res, next) => {
   const id = req.session.currentUser._id
 
@@ -73,7 +71,6 @@ router.get("/", isLoggedIn, checkRole("ADMIN"), (req, res, next) => {
 router.post("/", isLoggedIn, checkRole("ADMIN"), (req, res, next) => {
   const id = req.session.currentUser._id
   const { username, passwordHash } = req.body
-  console.log(req.body)
 
   bcryptjs
     .genSalt(saltRounds)
@@ -86,25 +83,22 @@ router.post("/", isLoggedIn, checkRole("ADMIN"), (req, res, next) => {
       )
     )
     .then((user) => {
-      console.log(user)
       res.redirect("/admin")
     })
     .catch((err) => next(err))
 })
 
-// BORRAR PRODUCTOS ///////////////////
+// DELETE PRODUCTS ///////////////////
 router.post( "/productos/:id/borrar", isLoggedIn, checkRole("ADMIN"), (req, res, next) => {
     const { id } = req.params
-    Product.findByIdAndDelete(id).then(() => {
+  Product.findByIdAndDelete(id)
+    .then(() => {
       const url = `/admin/productos`
       res.redirect(url)
     })
+    .catch(err => next(err))
   }
 )
-
-router.get("/usuarios", isLoggedIn, checkRole("ADMIN"), (req, res, next) => {
-  res.render("admin/users")
-})
 
 router.get("/comentarios", isLoggedIn, checkRole("ADMIN"), (req, res, next) => {
   res.render("admin/reviews")

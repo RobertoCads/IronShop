@@ -1,7 +1,7 @@
 const router = require("express").Router()
 const bcryptjs = require("bcryptjs")
 const { isLoggedIn, checkRole } = require("../middleware/route-guard")
-// const { isAdmin, isUser } = require("../utils")
+const { isAdmin, isUser, totalPrice } = require("../utils")
 // const Product = require("../models/Product.model")
 const User = require("../models/User.model")
 const Cart = require("../models/Cart.model")
@@ -9,7 +9,7 @@ const Cart = require("../models/Cart.model")
 const saltRounds = 10
 
 
-// EDITAR NOMBRE DE USUARIO ////////////////
+// EDIT USER'S NAME ////////////////
 router.get("/perfil", isLoggedIn, checkRole("USER"), (req, res, next) => {
     const id = req.session.currentUser._id
 
@@ -30,19 +30,15 @@ router.post("/perfil", isLoggedIn, checkRole("USER"), (req, res, next) => {
     bcryptjs
         .genSalt(saltRounds)
         .then(salt => bcryptjs.hash(passwordHash, salt))
-        .then(hashedPassword =>  User
-            .findByIdAndUpdate(id, {username, passwordHash: hashedPassword}, { new: true }))
-        .then(user => {
-            console.log(user)
-            res.redirect("/perfil")
-        })
+        .then(hashedPassword =>  User.findByIdAndUpdate(id, {username, passwordHash: hashedPassword}, { new: true }))
+        .then(user => res.redirect("/perfil"))
         .catch(err => next(err))
  })
 
 
 
 
- // CARRITO ////////////////
+ // CART ////////////////
 router.get("/carrito", isLoggedIn, checkRole("USER"), (req, res, next) => {
     const id = req.session.currentUser._id
 
@@ -50,10 +46,7 @@ router.get("/carrito", isLoggedIn, checkRole("USER"), (req, res, next) => {
         .findOne({user: id})
         .populate("product")
         .then(cart => {
-
-            res.render("user/cart", {cart, totalPrice: cart.product.reduce((acc, elem) => {
-                return Number(elem.price) + acc
-            }, 0)})
+            res.render("user/cart", {cart, totalPrice: totalPrice(cart.product)})
         })
         .catch(err => next(err))
 })
@@ -71,8 +64,7 @@ router.post("/carrito", isLoggedIn, checkRole("USER"), (req, res, next) => {
 })
 
 
-// BORRAR PRODUCTOS DEL CARRITO ////////////////
-
+// DELETE CART'S PRODUCTS ////////////////
 router.post("/carrito/:productId/borrar", isLoggedIn, checkRole("USER"), (req, res, next) => {
     const id = req.session.currentUser._id
     const { productId } = req.params
