@@ -41,6 +41,8 @@
         <hr>
         {{/each}}
     </div>
+
+    {{#if isUser}}
     <form action="/producto/{{product.id}}" method="POST">
         <p class="fs-3 mt-5 fw-bold">Valora este producto</p>
         <div class="mb-3">
@@ -54,14 +56,7 @@
             <button type="submit" class="ms-auto btn btn-primary">Guardar</button>
         </div>
     </form>
-    {{!-- <div class="p-2">
-        <form action="/producto/{{product.id}}" method="POST">
-            <button type="submit" class="btn btn-danger mb-3">
-                Borrar rating
-            </button>
-        </form>
-
-    </div> --}}
+    {{/if}}
 </div>
 
 
