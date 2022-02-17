@@ -50,7 +50,10 @@ router.get("/carrito", isLoggedIn, checkRole("USER"), (req, res, next) => {
         .findOne({user: id})
         .populate("product")
         .then(cart => {
-            res.render("user/cart", {cart})
+
+            res.render("user/cart", {cart, totalPrice: cart.product.reduce((acc, elem) => {
+                return Number(elem.price) + acc
+            }, 0)})
         })
         .catch(err => next(err))
 })
