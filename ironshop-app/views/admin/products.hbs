@@ -1,10 +1,35 @@
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-4">
-            <div class="list-group">
-                <a class="list-group-item" href="/admin">Perfil</a>
-                <a class="list-group-item active" aria-current="true" href="/admin/productos">Productos</a>
-                <a class="list-group-item" href="/admin/comentarios">Comentarios</a>
+        <div class="col-lg-4">
+            <div class="profile-card border">
+                <div class="profile-card-header">
+                    <div class="row">
+                        <div class="col-5 d-flex justify-content-center">
+                            <img class="rounded-circle shadow" src="/images/profile-admin.png" alt="" width="85px">
+                        </div>
+                        <div class="col-7 pt-2">
+                            <p class="text-dark fw-normal">{{username}}</p>
+                            <p class="text-muted"></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="profile-card-body">
+                    <nav class="nav nav-pills nav-fill flex-column">
+                        <a class="nav-link active" href="/perfil">
+                            <ion-icon name="person-circle-outline"></ion-icon>
+                            <span>Perfil</span>
+                        </a>
+                        <a class="nav-link" href="/admin/productos">
+                            <ion-icon name="reader-outline"></ion-icon>
+                            <span>Productos</span>
+                        </a>
+                        <a class="nav-link" href="/admin/comentarios">
+                            <ion-icon name="clipboard-outline"></ion-icon>
+                            <span>Comentarios</span>
+                        </a>
+                    </nav>
+                </div>
             </div>
         </div>
         <div class="col-md-8">
@@ -44,7 +69,8 @@
                         </td>
                         <td>
                             <div class="d-flex justify-content-between">
-                                <a class="btn btn-warning btn-sm" href="/admin/productos/{{_id}}/editar" style="margin-right: 5px;">Editar</a>
+                                <a class="btn btn-warning btn-sm" href="/admin/productos/{{_id}}/editar"
+                                    style="margin-right: 5px;">Editar</a>
                                 <form action="/admin/productos/{{_id}}/borrar" method="POST">
                                     <button type="submit" class="btn btn-danger btn-sm" href="">Borrar</button>
                                 </form>

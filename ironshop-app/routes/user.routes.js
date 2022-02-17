@@ -1,86 +1,88 @@
-const router = require("express").Router()
-const bcryptjs = require("bcryptjs")
-const { isLoggedIn, checkRole } = require("../middleware/route-guard")
+const router = require("express").Router();
+const bcryptjs = require("bcryptjs");
+const { isLoggedIn, checkRole } = require("../middleware/route-guard");
 // const { isAdmin, isUser } = require("../utils")
 // const Product = require("../models/Product.model")
-const User = require("../models/User.model")
-const Cart = require("../models/Cart.model")
+const User = require("../models/User.model");
+const Cart = require("../models/Cart.model");
 // const { Router } = require("express")
-const saltRounds = 10
-
+const saltRounds = 10;
 
 // EDITAR NOMBRE DE USUARIO ////////////////
 router.get("/perfil", isLoggedIn, checkRole("USER"), (req, res, next) => {
-    const id = req.session.currentUser._id
+  const id = req.session.currentUser._id;
 
-    User
-        .findById(id)
-        .then(user => {
-            res.render("user/user-profile", user)
-        })
-        .catch(err => next(err))
-})
-
+  User.findById(id)
+    .then((user) => {
+      res.render("user/user-profile", user);
+    })
+    .catch((err) => next(err));
+});
 
 router.post("/perfil", isLoggedIn, checkRole("USER"), (req, res, next) => {
-    const id = req.session.currentUser._id
-    const { username, passwordHash } = req.body
+  const id = req.session.currentUser._id;
+  const { username, passwordHash } = req.body;
 
+  bcryptjs
+    .genSalt(saltRounds)
+    .then((salt) => bcryptjs.hash(passwordHash, salt))
+    .then((hashedPassword) =>
+      User.findByIdAndUpdate(
+        id,
+        { username, passwordHash: hashedPassword },
+        { new: true }
+      )
+    )
+    .then((user) => {
+      console.log(user);
+      res.redirect("/perfil");
+    })
+    .catch((err) => next(err));
+});
 
-    bcryptjs
-        .genSalt(saltRounds)
-        .then(salt => bcryptjs.hash(passwordHash, salt))
-        .then(hashedPassword =>  User
-            .findByIdAndUpdate(id, {username, passwordHash: hashedPassword}, { new: true }))
-        .then(user => {
-            console.log(user)
-            res.redirect("/perfil")
-        })
-        .catch(err => next(err))
- })
-
-
-
-
- // CARRITO ////////////////
+// CARRITO ////////////////
 router.get("/carrito", isLoggedIn, checkRole("USER"), (req, res, next) => {
-    const id = req.session.currentUser._id
+  const id = req.session.currentUser._id;
 
-    Cart
-        .findOne({user: id})
-        .populate("product")
-        .then(cart => {
-            res.render("user/cart", {cart})
-        })
-        .catch(err => next(err))
-})
+  Cart.findOne({ user: id })
+    .populate("product")
+    .then((cart) => {
+      res.render("user/cart", { cart });
+    })
+    .catch((err) => next(err));
+});
 
 router.post("/carrito", isLoggedIn, checkRole("USER"), (req, res, next) => {
-    const {productId} = req.body
-    const id = req.session.currentUser._id
+  const { productId } = req.body;
+  const id = req.session.currentUser._id;
 
-    Cart
-        .findOneAndUpdate({user: id}, {$push: {product: productId}})
-        .then(() => {
-            res.redirect("/carrito")
-        })
-        .catch(err => next(err))
-})
-
+  Cart.findOneAndUpdate({ user: id }, { $push: { product: productId } })
+    .then(() => {
+      res.redirect("/carrito");
+    })
+    .catch((err) => next(err));
+});
 
 // BORRAR PRODUCTOS DEL CARRITO ////////////////
 
-router.post("/carrito/:productId/borrar", isLoggedIn, checkRole("USER"), (req, res, next) => {
-    const id = req.session.currentUser._id
-    const { productId } = req.params
+router.post(
+  "/carrito/:productId/borrar",
+  isLoggedIn,
+  checkRole("USER"),
+  (req, res, next) => {
+    const id = req.session.currentUser._id;
+    const { productId } = req.params;
 
-    Cart
-        .findOneAndUpdate({ user: id }, { $pull: { product: productId } })
-        .then(() => {
-            res.redirect("/carrito")
-        })
-        .catch(err => next(err))
-})
+    Cart.findOneAndUpdate({ user: id }, { $pull: { product: productId } })
+      .then(() => {
+        res.redirect("/carrito");
+      })
+      .catch((err) => next(err));
+  }
+);
 
+router.get("/payment", isLoggedIn, checkRole("USER"), (req, res, next) => {
+  res.render("user/payment");
+});
 
-module.exports = router
+module.exports = router;

@@ -217,3 +217,45 @@ footer .contact input {
   width: 50%;
 }
 
+
+
+/* PAYMENT STYLES */
+
+.card-header {
+    padding: .5rem 1rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, .03);
+    border-bottom: none
+}
+
+.form-control {
+    height: 50px;
+    border: 2px solid #eee;
+    border-radius: 6px;
+    font-size: 14px
+}
+
+.input {
+    position: relative
+}
+
+.input i {
+    position: absolute;
+    top: 16px;
+    left: 11px;
+    color: #989898
+}
+
+.input input {
+    text-indent: 25px
+}
+
+.super-price {
+    top: 0px;
+    font-size: 22px
+}
+
+.payment-card-body {
+    flex: 1 1 auto;
+    padding: 24px 1rem !important
+}
